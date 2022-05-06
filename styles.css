@@ -1,12 +1,33 @@
 body {
-    display: flex;
+    display:flex;
 }
 
 #container {
     display:flex;
     flex-direction: column;
+   
+}
+
+.displayDiv {
+    border: 1px solid black;
+    height: 40px;
 }
 
 .buttonRow {
     
+}
+
+.buttonsDiv {
+    display: flex;
+}
+
+.operatorDiv {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.operatorButtons {
+    height: 40px;
+    width: 40px;
 }
