@@ -11,9 +11,11 @@ body {
 .displayDiv {
     border: 1px solid black;
     height: 40px;
+    font-size: 20px;
+    text-align: center;
 }
 
-.buttonRow {
+.button {
     
 }
 
@@ -29,5 +31,10 @@ body {
 
 .operatorButtons {
     height: 40px;
+    width: 40px;
+}
+
+.clearButton {
+    height: 160px;
     width: 40px;
 }

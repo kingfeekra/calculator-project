@@ -22,9 +22,11 @@ const container = document.querySelector("#container");
 const displayDiv = document.createElement("div");
 const buttonsDiv = document.createElement("div");
 const numberDiv = document.createElement("div");
+
 container.appendChild(displayDiv);
 displayDiv.classList.add("displayDiv");
 container.appendChild(buttonsDiv);
+
 buttonsDiv.classList.add("buttonsDiv");
 buttonsDiv.appendChild(numberDiv);
 
@@ -62,6 +64,17 @@ operatorButtons[1].textContent = "-";
 operatorButtons[2].textContent = "x";
 operatorButtons[3].textContent = "÷";
 
+const clearButton = document.createElement("button");
+clearButton.classList.add("clearButton");
+clearButton.textContent = "C";
+buttonsDiv.appendChild(clearButton);
+
+const buttonPress = document.querySelectorAll(".button");
+for(let i = 0; i < buttonPress.length; i++) {
+    buttonPress[i].addEventListener("click", () => {
+        displayDiv.textContent = buttons[i].textContent + displayDiv.textContent;
+    });
+}
 
 
 
