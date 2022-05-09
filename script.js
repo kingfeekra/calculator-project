@@ -78,7 +78,7 @@ let lastButtonClicked;
 const buttonPress = document.querySelectorAll(".button");
 for(let i = 0; i < buttonPress.length; i++) {
     buttonPress[i].addEventListener("click", () => {
-        if(lastButtonClicked == "+") {
+        if(lastButtonClicked == "+" || lastButtonClicked == "-" || lastButtonClicked == "x" || lastButtonClicked == "÷") {
             displayDiv.textContent = "";
         }
         lastButtonClicked = buttons[i].textContent;
