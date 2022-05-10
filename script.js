@@ -17,6 +17,9 @@ function divide(a, b) {
 }
 
 let operate = function(operator, a, b) {
+    if(lastButtonClicked == "=") {
+        return;
+    }
     if(operator == "+") {
         return add(a, b);
     }
@@ -91,9 +94,10 @@ buttonsDiv.appendChild(clearButton);
 let lastButtonClicked;
 let lastOperatorClicked;
 
-//event listeners for buttons, clear display if previous button click was operator
+//event listeners for number buttons, clear display if previous button click was operator
 const buttonPress = document.querySelectorAll(".button");
 for(let i = 0; i < buttonPress.length; i++) {
+    if(i == 11) { continue; }
     buttonPress[i].addEventListener("click", () => {
         
         if(lastButtonClicked == "+" || lastButtonClicked == "-" || lastButtonClicked == "x" || lastButtonClicked == "÷") {
@@ -106,8 +110,6 @@ for(let i = 0; i < buttonPress.length; i++) {
         displayDiv.textContent = displayDiv.textContent + buttons[i].textContent;
         }
 
-        
-        
         console.log(lastButtonClicked);
     });
 }
@@ -137,11 +139,16 @@ clearButton.addEventListener("click", () => {
 
 //event listener for "=" button, depending on last operator clicked, will operate 2 values
 buttons[11].addEventListener("click", () => {
+    if(sumArray.length === 0) { //if array is empty, do nothing
+        return;
+    }
+    else {
     sumArray.push(displayDiv.textContent);
     console.log(sumArray);
     console.log(operate(lastOperatorClicked, parseInt(sumArray[0]), parseInt(sumArray[1])));
-    displayDiv.textContent = operate(lastOperatorClicked, parseInt(sumArray[0]), parseInt(sumArray[1]));
+    displayDiv.textContent = operate(lastOperatorClicked, parseFloat(sumArray[0]), parseFloat(sumArray[1]));
     sumArray = [];
+    }
     //return operate(lastOperatorClicked, sumArray[0], sumArray[1]);
 } )
 
