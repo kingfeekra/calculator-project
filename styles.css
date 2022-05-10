@@ -1,5 +1,8 @@
 body {
     display:flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
 }
 
 #container {
@@ -9,14 +12,23 @@ body {
 }
 
 .displayDiv {
+    display: flex;
     border: 1px solid black;
-    height: 40px;
-    font-size: 20px;
-    text-align: center;
+    height: 80px;
+    font-size: 36px;
+    padding-right: 10px;
+    justify-content: right;
+    align-items: flex-end;
 }
 
-.button {
-    
+.numberButtons {
+    height: 80px;
+    width: 80px;
+}
+
+.numberDiv {
+    height: 320px;
+    width: 240px;
 }
 
 .buttonsDiv {
@@ -30,11 +42,11 @@ body {
 }
 
 .operatorButtons {
-    height: 40px;
-    width: 40px;
+    height: 80px;
+    width: 80px;
 }
 
 .clearButton {
-    height: 160px;
-    width: 40px;
+    height: 320px;
+    width: 80px;
 }

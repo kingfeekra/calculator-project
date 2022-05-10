@@ -30,7 +30,12 @@ let operate = function(operator, a, b) {
         return multiply(a, b);
     }
     else if(operator == "÷") {
+        if(b == 0) {
+            return "Can't divide by zero."
+        }
+        else {
         return divide(a, b);
+        }
     }
     else {
         return;
@@ -48,6 +53,7 @@ container.appendChild(buttonsDiv);
 
 buttonsDiv.classList.add("buttonsDiv");
 buttonsDiv.appendChild(numberDiv);
+numberDiv.classList.add("numberDiv");
 
 const buttonRows = [];
 const buttons = [];
@@ -55,12 +61,11 @@ const numberOfButtons = 12;
 const buttonHeight = 40;
 const buttonWidth = 40;
 
-numberDiv.style.cssText = `height: ${buttonHeight*4}px; width: ${buttonWidth*3}px;`;
+//numberDiv.style.cssText = `height: ${buttonHeight*4}px; width: ${buttonWidth*3}px;`;
 //create number buttons 0-9, "." button and "=" button
 for(let i = 0; i < numberOfButtons; i++) {
     buttons[i] = document.createElement("button");
-    buttons[i].classList.add("button");
-    buttons[i].style.cssText = `height: ${buttonHeight}px; width: ${buttonWidth}px;`;
+    buttons[i].classList.add("numberButtons");
     buttons[i].textContent = i + 1;
     numberDiv.appendChild(buttons[i]);
 }
@@ -94,12 +99,14 @@ buttonsDiv.appendChild(clearButton);
 let lastButtonClicked;
 let lastOperatorClicked;
 
-//event listeners for number buttons, clear display if previous button click was operator
-const buttonPress = document.querySelectorAll(".button");
+//event listeners for number buttons, clears display if previous button click was an operator button
+const buttonPress = document.querySelectorAll(".numberButtons");
 for(let i = 0; i < buttonPress.length; i++) {
     if(i == 11) { continue; }
     buttonPress[i].addEventListener("click", () => {
-        
+        if (displayDiv.textContent == "Can't divide by zero.") {
+            displayDiv.textContent = "";
+        }
         if(lastButtonClicked == "+" || lastButtonClicked == "-" || lastButtonClicked == "x" || lastButtonClicked == "÷") {
             displayDiv.textContent = "";
         }
