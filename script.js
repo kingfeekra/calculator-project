@@ -1,3 +1,5 @@
+//operator functions
+
 function add(a, b) {
     return a + b;
 }
@@ -14,8 +16,22 @@ function divide(a, b) {
     return a/b;
 }
 
-function operate(operator, a, b) {
-
+let operate = function(operator, a, b) {
+    if(operator == "+") {
+        return add(a, b);
+    }
+    else if (operator == "-") {
+        return subtract(a, b);
+    }
+    else if(operator == "x") {
+        return multiply(a, b);
+    }
+    else if(operator == "÷") {
+        return divide(a, b);
+    }
+    else {
+        return;
+    }
 }
 
 const container = document.querySelector("#container");
@@ -73,17 +89,22 @@ clearButton.textContent = "C";
 buttonsDiv.appendChild(clearButton);
 
 let lastButtonClicked;
+let lastOperatorClicked;
 
-//event listeners for number buttons, clear display if previous button click was operator
+//event listeners for buttons, clear display if previous button click was operator
 const buttonPress = document.querySelectorAll(".button");
 for(let i = 0; i < buttonPress.length; i++) {
     buttonPress[i].addEventListener("click", () => {
+        
         if(lastButtonClicked == "+" || lastButtonClicked == "-" || lastButtonClicked == "x" || lastButtonClicked == "÷") {
             displayDiv.textContent = "";
         }
+
         lastButtonClicked = buttons[i].textContent;
+
+        if(buttons[i].textContent != "=") {
         displayDiv.textContent = displayDiv.textContent + buttons[i].textContent;
-        
+        }
 
         
         
@@ -96,6 +117,7 @@ let sumArray = [];
 for(let i = 0; i < 4; i++) {
     operatorButtons[i].addEventListener("click", () => {
         lastButtonClicked = operatorButtons[i].textContent;
+        lastOperatorClicked = operatorButtons[i].textContent;
         sumArray.push(displayDiv.textContent);
         console.log(sumArray);
         console.log(lastButtonClicked);
@@ -105,10 +127,22 @@ for(let i = 0; i < 4; i++) {
 
 
 
-//clear button listener to clear display
+//event listener for clear button to clear display and stored values
 clearButton.addEventListener("click", () => {
     displayDiv.textContent = "";
+    sumArray = [];
+    lastOperatorClicked = "";
+    lastButtonClicked = "";
 })
+
+//event listener for "=" button, depending on last operator clicked, will operate 2 values
+buttons[11].addEventListener("click", () => {
+    sumArray.push(displayDiv.textContent);
+    console.log(sumArray);
+    console.log(operate(lastOperatorClicked, parseInt(sumArray[0]), parseInt(sumArray[1])));
+    displayDiv.textContent = operate(lastOperatorClicked, parseInt(sumArray[0]), parseInt(sumArray[1]));
+    //return operate(lastOperatorClicked, sumArray[0], sumArray[1]);
+} )
 
 
 
