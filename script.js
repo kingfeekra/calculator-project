@@ -141,6 +141,7 @@ buttons[11].addEventListener("click", () => {
     console.log(sumArray);
     console.log(operate(lastOperatorClicked, parseInt(sumArray[0]), parseInt(sumArray[1])));
     displayDiv.textContent = operate(lastOperatorClicked, parseInt(sumArray[0]), parseInt(sumArray[1]));
+    sumArray = [];
     //return operate(lastOperatorClicked, sumArray[0], sumArray[1]);
 } )
 
