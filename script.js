@@ -117,7 +117,9 @@ for(let i = 0; i < buttonPress.length; i++) {
         if (displayDiv.textContent == "Can't divide by zero.") {
             displayDiv.textContent = "";
         }
-        if(lastButtonClicked == "+" || lastButtonClicked == "-" || lastButtonClicked == "x" || lastButtonClicked == "÷" || lastButtonClicked == "=") {
+        if  (lastButtonClicked == "+" || lastButtonClicked == "-" || 
+            lastButtonClicked == "x" || lastButtonClicked == "÷" || 
+            lastButtonClicked == "=") {
             displayDiv.textContent = "";
         }
 
@@ -156,11 +158,17 @@ clearButton.addEventListener("click", () => {
 
 
 backspaceButton.addEventListener("click", () => {
+    if(lastButtonClicked == "+" || lastButtonClicked == "-" || 
+    lastButtonClicked == "x" || lastButtonClicked == "÷" || 
+    lastButtonClicked == "=") {
+        return;
+    }
+    else {
     const backspaceArray = displayDiv.textContent.split('');
     //console.log(back)
     backspaceArray.pop();
     displayDiv.textContent = backspaceArray.join('');
-
+    }
 })
 
 
