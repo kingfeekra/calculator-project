@@ -16,6 +16,7 @@ function divide(a, b) {
     return a/b;
 }
 
+//function chooses an operator function depending on last operator button clicked by user
 let operate = function(operator, a, b) {
     if(lastButtonClicked == "=") {
         return;
@@ -42,6 +43,7 @@ let operate = function(operator, a, b) {
     }
 }
 
+//create container and divs for buttons
 const container = document.querySelector("#container");
 const displayDiv = document.createElement("div");
 const buttonsDiv = document.createElement("div");
@@ -58,10 +60,7 @@ numberDiv.classList.add("numberDiv");
 const buttonRows = [];
 const buttons = [];
 const numberOfButtons = 12;
-const buttonHeight = 40;
-const buttonWidth = 40;
 
-//numberDiv.style.cssText = `height: ${buttonHeight*4}px; width: ${buttonWidth*3}px;`;
 //create number buttons 0-9, "." button and "=" button
 for(let i = 0; i < numberOfButtons; i++) {
     buttons[i] = document.createElement("button");
@@ -73,7 +72,7 @@ buttons[9].textContent = ".";
 buttons[10].textContent = 0;
 buttons[11].textContent = "=";
 
-
+//create div for operator buttons
 const operatorDiv = document.createElement("div");
 operatorDiv.classList.add("operatorDiv");
 buttonsDiv.appendChild(operatorDiv);
@@ -106,6 +105,7 @@ backspaceButton.textContent = "⌫";
 backspaceButton.classList.add("backspaceButton");
 clearButtonsDiv.appendChild(backspaceButton);
 
+//variables to store values based on buttons clicked 
 let lastButtonClicked;
 let lastOperatorClicked;
 
@@ -134,7 +134,7 @@ for(let i = 0; i < buttonPress.length; i++) {
 }
 
 let sumArray = [];
-//event listeners for operator buttons, push number to array
+//event listeners for operator buttons, push number in display to array to be used later
 for(let i = 0; i < 4; i++) {
     operatorButtons[i].addEventListener("click", () => {
         lastButtonClicked = operatorButtons[i].textContent;
@@ -142,7 +142,6 @@ for(let i = 0; i < 4; i++) {
         sumArray.push(displayDiv.textContent);
         console.log(sumArray);
         console.log(lastButtonClicked);
-        //displayDiv.textContent = operatorButtons[i].textContent;
     })
 }
 
@@ -156,7 +155,8 @@ clearButton.addEventListener("click", () => {
     lastButtonClicked = "";
 })
 
-
+//when backspace button is clicked, delete previous number clicked
+//if previous button clicked was an operator, do nothing
 backspaceButton.addEventListener("click", () => {
     if(lastButtonClicked == "+" || lastButtonClicked == "-" || 
     lastButtonClicked == "x" || lastButtonClicked == "÷" || 
@@ -165,14 +165,13 @@ backspaceButton.addEventListener("click", () => {
     }
     else {
     const backspaceArray = displayDiv.textContent.split('');
-    //console.log(back)
     backspaceArray.pop();
     displayDiv.textContent = backspaceArray.join('');
     }
 })
 
 
-//event listener for "=" button, depending on last operator clicked, will operate 2 values
+//event listener for "=" button, depending on last operator clicked, will operate on 2 stored values
 buttons[11].addEventListener("click", () => {
     if(sumArray.length === 0) { //if array is empty, do nothing
         return;
@@ -185,7 +184,6 @@ buttons[11].addEventListener("click", () => {
     sumArray = [];
     lastButtonClicked = "=";
     }
-    //return operate(lastOperatorClicked, sumArray[0], sumArray[1]);
 } )
 
 
