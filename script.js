@@ -139,7 +139,9 @@ for(let i = 0; i < 4; i++) {
     operatorButtons[i].addEventListener("click", () => {
         lastButtonClicked = operatorButtons[i].textContent;
         lastOperatorClicked = operatorButtons[i].textContent;
+        if(displayDiv.textContent){
         sumArray.push(displayDiv.textContent);
+        }
         console.log(sumArray);
         console.log(lastButtonClicked);
     })
@@ -176,14 +178,14 @@ buttons[11].addEventListener("click", () => {
     if(sumArray.length === 0) { //if array is empty, do nothing
         return;
     }
-    else {
+    
     sumArray.push(displayDiv.textContent);
     console.log(sumArray);
     console.log(operate(lastOperatorClicked, parseInt(sumArray[0]), parseInt(sumArray[1])));
     displayDiv.textContent = operate(lastOperatorClicked, parseFloat(sumArray[0]), parseFloat(sumArray[1]));
     sumArray = [];
     lastButtonClicked = "=";
-    }
+    
 } )
 
 
