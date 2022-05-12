@@ -3,36 +3,35 @@ body {
     justify-content: center;
     height: 100vh;
     align-items: center;
+    background-color: aqua;
 }
 
 #container {
     display:flex;
     flex-direction: column;
-   
+    border: 10px solid #555555;
+    border-radius: 12px;
 }
 
 .displayDiv {
     display: flex;
-    border: 1px solid black;
+    border: 0px;
     height: 80px;
-    font-size: 36px;
+    font-size: 48px;
     padding-right: 10px;
     justify-content: right;
     align-items: flex-end;
-}
-
-.numberButtons {
-    height: 80px;
-    width: 80px;
+    background-color: antiquewhite;
 }
 
 .numberDiv {
-    height: 320px;
-    width: 240px;
+    height: 340px;
+    width: 260px;
 }
 
 .buttonsDiv {
     display: flex;
+    background-color: black;
 }
 
 .operatorDiv {
@@ -40,13 +39,39 @@ body {
     flex-direction: column;
     margin-left: 20px;
 }
-
-.operatorButtons {
-    height: 80px;
-    width: 80px;
+.numberButtons {
+    background-color: #008CBA;
+}
+.operatorButtons, .clearButton, .backspaceButton {
+    background-color: rgb(255, 113, 31);
 }
 
-.clearButton {
-    height: 320px;
+.numberButtons, .operatorButtons {
+    height: 80px;
     width: 80px;
+    font-size: 24px;
+    border: 1px solid black;
+    color: white;
+    border-radius: 12px;
+    margin: 2px;
+}
+.numberButtons:hover, .operatorButtons:hover, 
+.clearButton:hover, .backspaceButton:hover {
+    background-color: white;
+    color: black;
+}
+
+.clearButtonsDiv {
+    display:flex;
+    flex-direction: column;
+}
+
+.clearButton, .backspaceButton {
+    height: 164px;
+    width: 80px;
+    font-size: 24px;
+    color: white;
+    border: 1px solid black;
+    border-radius: 12px;
+    margin: 2px;
 }

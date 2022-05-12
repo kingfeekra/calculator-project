@@ -90,11 +90,21 @@ operatorButtons[1].textContent = "-";
 operatorButtons[2].textContent = "x";
 operatorButtons[3].textContent = "÷";
 
-//creates clear button
+//create clear button and backspace 
+const clearButtonsDiv = document.createElement("div");
+clearButtonsDiv.classList.add("clearButtonsDiv");
+buttonsDiv.appendChild(clearButtonsDiv);
+
 const clearButton = document.createElement("button");
 clearButton.classList.add("clearButton");
 clearButton.textContent = "C";
-buttonsDiv.appendChild(clearButton);
+clearButtonsDiv.appendChild(clearButton);
+
+const backspaceButton = document.createElement("button");
+backspaceButton.classList.add("backspaceButton");
+backspaceButton.textContent = "⌫";
+backspaceButton.classList.add("backspaceButton");
+clearButtonsDiv.appendChild(backspaceButton);
 
 let lastButtonClicked;
 let lastOperatorClicked;
@@ -107,7 +117,7 @@ for(let i = 0; i < buttonPress.length; i++) {
         if (displayDiv.textContent == "Can't divide by zero.") {
             displayDiv.textContent = "";
         }
-        if(lastButtonClicked == "+" || lastButtonClicked == "-" || lastButtonClicked == "x" || lastButtonClicked == "÷") {
+        if(lastButtonClicked == "+" || lastButtonClicked == "-" || lastButtonClicked == "x" || lastButtonClicked == "÷" || lastButtonClicked == "=") {
             displayDiv.textContent = "";
         }
 
@@ -144,6 +154,16 @@ clearButton.addEventListener("click", () => {
     lastButtonClicked = "";
 })
 
+
+backspaceButton.addEventListener("click", () => {
+    const backspaceArray = displayDiv.textContent.split('');
+    //console.log(back)
+    backspaceArray.pop();
+    displayDiv.textContent = backspaceArray.join('');
+
+})
+
+
 //event listener for "=" button, depending on last operator clicked, will operate 2 values
 buttons[11].addEventListener("click", () => {
     if(sumArray.length === 0) { //if array is empty, do nothing
@@ -155,6 +175,7 @@ buttons[11].addEventListener("click", () => {
     console.log(operate(lastOperatorClicked, parseInt(sumArray[0]), parseInt(sumArray[1])));
     displayDiv.textContent = operate(lastOperatorClicked, parseFloat(sumArray[0]), parseFloat(sumArray[1]));
     sumArray = [];
+    lastButtonClicked = "=";
     }
     //return operate(lastOperatorClicked, sumArray[0], sumArray[1]);
 } )
